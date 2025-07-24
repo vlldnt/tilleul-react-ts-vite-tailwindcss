@@ -1,6 +1,13 @@
 import { useState } from 'react';
 
-const Navbar = () => {
+type PageType = 'accueil' | 'ou-manger' | 'alentours' | 'contact' | 'reserver';
+
+interface NavbarProps {
+  currentPage: PageType;
+  onPageChange: (page: PageType) => void;
+}
+
+const Navbar = ({ currentPage, onPageChange }: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -8,12 +15,17 @@ const Navbar = () => {
   };
 
   const menuItems = [
-    { label: 'Accueil', href: '#accueil' },
-    { label: 'Où manger ?', href: '#ou-manger' },
-    { label: 'Alentours', href: '#alentours' },
-    { label: 'Contact', href: '#contact' },
-    { label: 'Réserver', href: '#reserver' }
+    { label: 'Accueil', page: 'accueil' as PageType },
+    { label: 'Où manger ?', page: 'ou-manger' as PageType },
+    { label: 'Alentours', page: 'alentours' as PageType },
+    { label: 'Contact', page: 'contact' as PageType },
+    { label: 'Réserver', page: 'reserver' as PageType }
   ];
+
+  const handleMenuClick = (page: PageType) => {
+    onPageChange(page);
+    setIsMenuOpen(false);
+  };
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50">
@@ -21,21 +33,27 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-24">
           {/* Logo */}
           <div className="flex items-center">
-            <img src="/src/assets/images/tilleul-de-canac-color.png" alt="Tilleul de Canac" 
-              className="p-4 h-28 w-auto"/>
+            <button onClick={() => handleMenuClick('accueil')} className="hover:opacity-80 transition-opacity duration-200">
+              <img src="/src/assets/images/tilleul-de-canac-color.png" alt="Tilleul de Canac" 
+                className="p-4 h-28 w-auto"/>
+            </button>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
               {menuItems.map((item) => (
-                <a
+                <button
                   key={item.label}
-                  href={item.href}
-                  className="text-lime-600 hover:bg-lime-100 hover:text-lime-700 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                  onClick={() => handleMenuClick(item.page)}
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                    currentPage === item.page
+                      ? 'bg-lime-600 text-white'
+                      : 'text-lime-600 hover:bg-lime-100 hover:text-lime-700'
+                  }`}
                 >
                   {item.label}
-                </a>
+                </button>
               ))}
             </div>
           </div>
@@ -89,14 +107,17 @@ const Navbar = () => {
       <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-lime-700">
           {menuItems.map((item) => (
-            <a
+            <button
               key={item.label}
-              href={item.href}
-              className="text-white hover:bg-lime-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => handleMenuClick(item.page)}
+              className={`w-full text-left block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+                currentPage === item.page
+                  ? 'bg-lime-800 text-white'
+                  : 'text-white hover:bg-lime-800'
+              }`}
             >
               {item.label}
-            </a>
+            </button>
           ))}
         </div>
       </div>
