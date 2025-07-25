@@ -31,7 +31,7 @@ function App() {
   return (
     <div className="min-h-screen bg-green-50">
       <Navbar currentPage={currentPage} onPageChange={setCurrentPage} />
-      <main>
+      <main className="pt-20">
         {renderPage()}
       </main>
     </div>
