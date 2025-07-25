@@ -1,69 +1,38 @@
-# React + TypeScript + Vite
+# Tilleul de Canac – Chambres d'hôtes
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Tilleul de Canac](src/assets/images/tilleul-de-canac-color.png)
 
-Currently, two official plugins are available:
+Bienvenue sur le projet **Tilleul de Canac**, un site web moderne pour une maison d'hôtes située à Canac, développé avec React, TypeScript, Vite et TailwindCSS.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Présentation
 
-## Expanding the ESLint configuration
+Le Tilleul de Canac est une charmante maison d'hôtes qui propose des chambres confortables dans un cadre verdoyant et paisible. Ce site permet de :
+- Découvrir les chambres et les environs
+- Consulter les disponibilités en temps réel
+- Contacter facilement les propriétaires
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Technologies utilisées
+- **React** + **TypeScript**
+- **Vite** (build ultra-rapide)
+- **TailwindCSS** (design moderne et responsive)
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Structure du projet
+- `src/components/` : Composants réutilisables (Navbar, Calendar, etc.)
+- `src/pages/` : Pages principales du site (Accueil, Disponibilité, Contact, etc.)
+- `src/assets/` : Images et données statiques
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Lancer le projet en local
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Le site sera accessible sur [http://localhost:5173](http://localhost:5173)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Aperçu
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+![Aperçu du site](src/assets/images/tilleul-de-canac-color.png)
+
+---
+
+© Tilleul de Canac – Chambres d'hôtes
