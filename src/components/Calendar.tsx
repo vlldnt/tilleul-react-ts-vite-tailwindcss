@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 interface CalendarProps {
   initialDate?: Date;
+  unavailableDates?: string[]; // format YYYY-MM-DD
 }
 
 const monthNames = [
@@ -10,7 +11,7 @@ const monthNames = [
 ];
 const weekDays = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
 
-const Calendar = ({ initialDate }: CalendarProps) => {
+const Calendar = ({ initialDate, unavailableDates = [] }: CalendarProps) => {
   const [currentDate, setCurrentDate] = useState(initialDate || new Date());
 
   const generateCalendarDays = () => {
@@ -29,11 +30,15 @@ const Calendar = ({ initialDate }: CalendarProps) => {
       date.setDate(startDate.getDate() + i);
       const isCurrentMonth = date.getMonth() === month;
       const isToday = date.getTime() === today.getTime();
+      const dateString = date.toISOString().split('T')[0];
+      const isUnavailable = unavailableDates.includes(dateString);
       days.push({
         date,
         day: date.getDate(),
         isCurrentMonth,
-        isToday
+        isToday,
+        isUnavailable,
+        dateString
       });
     }
     return days;
@@ -85,6 +90,8 @@ const Calendar = ({ initialDate }: CalendarProps) => {
             className={`relative p-2 h-12 flex items-center justify-center text-sm font-medium rounded-lg transition-colors
               ${!day.isCurrentMonth ? 'text-gray-300' : ''}
               ${day.isToday ? 'ring-2 ring-lime-600' : ''}
+              ${day.isCurrentMonth && !day.isUnavailable ? 'bg-green-100 text-green-800 hover:bg-green-200' : ''}
+              ${day.isCurrentMonth && day.isUnavailable ? 'bg-gray-300 text-gray-500 line-through' : ''}
             `}
           >
             <span>{day.day}</span>

@@ -1,7 +1,23 @@
 import Calendar from '../components/Calendar';
+import { useEffect, useState } from 'react';
+import { parseICS } from '../utils/icsParser';
 
 
 const AvailabilityPage = () => {
+  const [unavailableDates, setUnavailableDates] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchIcs = () => {
+      fetch('https://ical.booking.com/v1/export?t=39bc3ffd-da8d-455f-80e5-01b0e57179c3')
+        .then(res => res.text())
+        .then(text => setUnavailableDates(parseICS(text)))
+        .catch(() => setUnavailableDates([]));
+    };
+    fetchIcs();
+    const interval = setInterval(fetchIcs, 60 * 60 * 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="min-h-screen bg-green-50 py-16" id="disponibilite">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,7 +30,7 @@ const AvailabilityPage = () => {
           </p>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <Calendar />
+          <Calendar unavailableDates={unavailableDates} />
         </div>
       </div>
     </div>
