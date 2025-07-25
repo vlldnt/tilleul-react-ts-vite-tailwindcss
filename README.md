@@ -1,6 +1,6 @@
 # Tilleul de Canac – Chambres d'hôtes
 
-![Tilleul de Canac](src/assets/images/tilleul-de-canac-color.png)
+![Tilleul de Canac](src/assets/images/tilleul-de-canac-color-white.png)
 
 Bienvenue sur le projet **Tilleul de Canac**, un site web moderne pour une chambre d'hôtes située à Onet-le-Château, développé avec React, TypeScript, Vite et TailwindCSS.
 
@@ -31,7 +31,7 @@ Le site sera accessible sur [http://localhost:5173](http://localhost:5173)
 
 ## Aperçu
 
-![Aperçu du site](src/assets/images/tilleul-de-canac-color.png)
+![Aperçu du site](src/assets/images/tilleul-de-canac-color-white.png)
 
 ---
 
