@@ -13,8 +13,8 @@ Le Tilleul de Canac est une charmante maison d'hôtes qui propose des chambres c
 
 ## Technologies utilisées
 - **React** + **TypeScript**
-- **Vite** (build ultra-rapide)
-- **TailwindCSS** (design moderne et responsive)
+- **Vite**
+- **TailwindCSS**
 
 ## Structure du projet
 - `src/components/` : Composants réutilisables (Navbar, Calendar, etc.)
