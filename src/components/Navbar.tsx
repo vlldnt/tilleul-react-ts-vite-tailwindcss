@@ -32,7 +32,7 @@ const Navbar = ({ currentPage, onPageChange }: NavbarProps) => {
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
         {/* Logo */}
         <button onClick={() => handleMenuClick('accueil')} className="flex items-center space-x-3 hover:opacity-80 transition-opacity duration-200">
-          <img src="/src/assets/images/tilleul-de-canac-color.png" className="h-20" alt="Tilleul de Canac" />
+          <img src="/src/assets/images/tilleul-de-canac-color.png" className="h-14 md:h-20" alt="Tilleul de Canac" />
         </button>
 
         {/* CTA Button + Mobile menu button */}
