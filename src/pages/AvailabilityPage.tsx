@@ -7,15 +7,11 @@ const AvailabilityPage = () => {
   const [unavailableDates, setUnavailableDates] = useState<string[]>([]);
 
   useEffect(() => {
-    const fetchIcs = () => {
-      fetch('https://ical.booking.com/v1/export?t=39bc3ffd-da8d-455f-80e5-01b0e57179c3')
-        .then(res => res.text())
-        .then(text => setUnavailableDates(parseICS(text)))
-        .catch(() => setUnavailableDates([]));
-    };
-    fetchIcs();
-    const interval = setInterval(fetchIcs, 60 * 60 * 1000);
-    return () => clearInterval(interval);
+    // Lecture du fichier local export.ics (en prod, utiliser fetch sur l'URL booking)
+    fetch('/export.ics')
+      .then(res => res.text())
+      .then(text => setUnavailableDates(parseICS(text)))
+      .catch(() => setUnavailableDates([]));
   }, []);
 
   return (
