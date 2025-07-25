@@ -4,9 +4,9 @@ import HomePage from './pages/HomePage';
 import RestaurantsPage from './pages/RestaurantsPage';
 import AlentoursPage from './pages/AlentoursPage';
 import ContactPage from './pages/ContactPage';
-import ReservationPage from './pages/ReservationPage';
+import AvailabilityPage from './pages/AvailabilityPage';
 
-type PageType = 'accueil' | 'ou-manger' | 'alentours' | 'contact' | 'reserver';
+type PageType = 'accueil' | 'ou-manger' | 'alentours' | 'contact' | 'disponibilite';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<PageType>('accueil');
@@ -21,8 +21,8 @@ function App() {
         return <AlentoursPage />;
       case 'contact':
         return <ContactPage />;
-      case 'reserver':
-        return <ReservationPage />;
+      case 'disponibilite':
+        return <AvailabilityPage />;
       default:
         return <HomePage />;
     }
